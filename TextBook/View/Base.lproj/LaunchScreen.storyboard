@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YEP-hn-m0j">
+                                <rect key="frame" x="40" y="100" width="334" height="606"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample Story" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tg6-bU-B4b">
+                                        <rect key="frame" x="20" y="19.999999999999996" width="294" height="63.666666666666657"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="45"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="5" height="5"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tree" translatesAutoresizingMaskIntoConstraints="NO" id="Q7q-hX-UsT">
+                                        <rect key="frame" x="50" y="133.66666666666666" width="234" height="233.99999999999997"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Q7q-hX-UsT" secondAttribute="height" multiplier="1:1" id="f46-Ga-gMK"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Q7q-hX-UsT" firstAttribute="leading" secondItem="YEP-hn-m0j" secondAttribute="leading" constant="50" id="0nE-St-YaI"/>
+                                    <constraint firstAttribute="trailing" secondItem="tg6-bU-B4b" secondAttribute="trailing" constant="20" id="Drs-Bf-p19"/>
+                                    <constraint firstItem="tg6-bU-B4b" firstAttribute="leading" secondItem="YEP-hn-m0j" secondAttribute="leading" constant="20" id="Kp8-Ih-Xx1"/>
+                                    <constraint firstItem="Q7q-hX-UsT" firstAttribute="top" secondItem="tg6-bU-B4b" secondAttribute="bottom" constant="50" id="Lin-aH-tya"/>
+                                    <constraint firstAttribute="trailing" secondItem="Q7q-hX-UsT" secondAttribute="trailing" constant="50" id="Zcl-ks-zCs"/>
+                                    <constraint firstItem="tg6-bU-B4b" firstAttribute="top" secondItem="YEP-hn-m0j" secondAttribute="top" constant="20" id="oSe-Qc-yB5"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.821525399543379" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YEP-hn-m0j" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="5TH-4g-8bh">
+                                <variation key="heightClass=regular-widthClass=regular" constant="150"/>
+                            </constraint>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YEP-hn-m0j" secondAttribute="trailing" constant="40" id="Pb3-GG-ffz">
+                                <variation key="heightClass=regular-widthClass=regular" constant="150"/>
+                            </constraint>
+                            <constraint firstItem="YEP-hn-m0j" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="Rm8-F0-Pit"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="YEP-hn-m0j" secondAttribute="bottom" constant="30" id="axR-AN-tDP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="50.724637681159422" y="374.18478260869568"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Tree" width="242" height="208"/>
+    </resources>
+</document>
