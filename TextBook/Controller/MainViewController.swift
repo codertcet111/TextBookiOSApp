@@ -34,10 +34,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let vc = storyboard!.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
-//        vc.chapterNumber = indexPath.row
-//        let navigationController = UINavigationController(rootViewController: vc)
-//        self.presentViewController(navigationController, animated: true, completion: nil)
+        let vc = storyboard!.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        vc.chapterNumber = indexPath.row
+        vc.pageNumber = 0
+        let navigationController = UINavigationController(rootViewController: vc)
+        self.present(navigationController, animated: true, completion: nil)
     }
 }
 
