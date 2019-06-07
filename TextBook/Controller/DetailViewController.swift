@@ -55,7 +55,7 @@ class DetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         self.initializeBookmarkData()
-        self.setBookmarkedImage()
+        self.setBookmarkedAndShareImage()
         self.setChapterContext()
         self.contentDescriptionLabel.text = AppDataSource.appDataSource.RawContext
         super.viewDidLoad()
@@ -83,12 +83,27 @@ class DetailViewController: BaseViewController {
         }
     }
     
-    func setBookmarkedImage(){
-        let barButtonItem = UIBarButtonItem(image: UIImage(named: "bookmarkedImages.png")?.withRenderingMode(.alwaysOriginal),
+    func setBookmarkedAndShareImage(){
+        let bookmarkBarButtonItem = UIBarButtonItem(image: UIImage(named: "bookmarkedImages.png")?.withRenderingMode(.alwaysOriginal),
                                             style: .plain,
                                             target: self,
                                             action: #selector(bookmarkedButtonTapped))
-        self.navigationItem.rightBarButtonItem = barButtonItem
+        let shareBarButtonItem = UIBarButtonItem(image: UIImage(named: "ShareOurAppNow.png")?.withRenderingMode(.alwaysOriginal),
+                                                    style: .plain,
+                                                    target: self,
+                                                    action: #selector(shareButtonTapped))
+        
+//        let bookmarkBarButtonItem = UIButton(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
+//        bookmarkBarButtonItem.setBackgroundImage(UIImage(named: "bookmarkedImages.png")?.withRenderingMode(.alwaysOriginal), for: .normal)
+//        bookmarkBarButtonItem.addTarget(self, action: #selector(bookmarkedButtonTapped), for: .touchUpInside)
+//
+//        let shareBarButtonItem = UIButton(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
+//        shareBarButtonItem.setBackgroundImage(UIImage(named: "shareTheAppNow.png")?.withRenderingMode(.alwaysOriginal), for: .normal)
+//        shareBarButtonItem.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
+//
+//        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: bookmarkBarButtonItem), UIBarButtonItem(customView: shareBarButtonItem)]
+        
+        self.navigationItem.rightBarButtonItems = [bookmarkBarButtonItem, shareBarButtonItem]
         self.setBookmarkedColor()
     }
     
@@ -111,6 +126,19 @@ class DetailViewController: BaseViewController {
         }
         UserDefaults.standard.set(bookmarkedData, forKey: self.bookmarkedKeyName)
         self.setBookmarkedColor()
+    }
+    
+    @objc fileprivate func shareButtonTapped(){
+        //Set the default sharing message.
+        let message = "Download our App."
+        //AppStore link for our app
+        if let link = NSURL(string: "http://appstore.com")
+        {
+            let objectsToShare = [message,link] as [Any]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
+            self.present(activityVC, animated: true, completion: nil)
+        }
     }
     
 }
