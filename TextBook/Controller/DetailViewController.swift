@@ -11,6 +11,7 @@ import SDWebImage
 
 class DetailViewController: BaseViewController {
     
+    let bookmarkedKeyName: String = "bookmarkedPages"
     var chapterNumber: Int = 0
     var pageNumber: Int = 0
     @IBOutlet weak var headerView: UIView!
@@ -53,6 +54,8 @@ class DetailViewController: BaseViewController {
     @IBOutlet weak var contentDescriptionLabel: UILabel!
     
     override func viewDidLoad() {
+        self.initializeBookmarkData()
+        self.setBookmarkedImage()
         self.setChapterContext()
         self.contentDescriptionLabel.text = AppDataSource.appDataSource.RawContext
         super.viewDidLoad()
@@ -61,6 +64,7 @@ class DetailViewController: BaseViewController {
     
     func setPageContent(){
         //        self.imageView
+        self.setBookmarkedColor()
         self.imageView.sd_setShowActivityIndicatorView(true)
         self.imageView.sd_setIndicatorStyle(.gray)
         self.imageView.sd_setImage(with: URL(string: AppDataSource.appDataSource.ChapterContentsImages[self.pageNumber]), placeholderImage: UIImage(named:"Entertanment.png"))
@@ -72,12 +76,41 @@ class DetailViewController: BaseViewController {
         self.setPageContent()
     }
     
-    func giveFlashAnimation(){
-        UIView.animate(withDuration: 0.5, animations: {
-            self.view.alpha = 0.0
-        }) { finished in
-            self.view.removeFromSuperview()
+    func initializeBookmarkData(){
+        if UserDefaults.standard.array(forKey: self.bookmarkedKeyName) as? [[Bool]] == nil{
+            let bookmarkedArray = Array(repeating: Array(repeating: false, count: AppDataSource.appDataSource.ChapterContentsImages.count), count: AppDataSource.appDataSource.ChaptersTitles.count)
+            UserDefaults.standard.set(bookmarkedArray, forKey: self.bookmarkedKeyName)
         }
+    }
+    
+    func setBookmarkedImage(){
+        let barButtonItem = UIBarButtonItem(image: UIImage(named: "bookmarkedImages.png")?.withRenderingMode(.alwaysOriginal),
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(bookmarkedButtonTapped))
+        self.navigationItem.rightBarButtonItem = barButtonItem
+        self.setBookmarkedColor()
+    }
+    
+    func setBookmarkedColor(){
+        let bookmarkedData = UserDefaults.standard.array(forKey: self.bookmarkedKeyName) as? [[Bool]]
+        if bookmarkedData?[self.chapterNumber][self.pageNumber] == true{
+            self.navigationItem.rightBarButtonItem?.image = self.navigationItem.rightBarButtonItem?.image?.withRenderingMode(.alwaysTemplate)
+            self.navigationItem.rightBarButtonItem?.tintColor = .red
+        }else{
+            self.navigationItem.rightBarButtonItem?.image = self.navigationItem.rightBarButtonItem?.image?.withRenderingMode(.alwaysOriginal)
+        }
+    }
+    
+    @objc fileprivate func bookmarkedButtonTapped() {
+        var bookmarkedData = UserDefaults.standard.array(forKey: self.bookmarkedKeyName) as? [[Bool]]
+        if bookmarkedData?[self.chapterNumber][self.pageNumber] == true{
+           bookmarkedData?[self.chapterNumber][self.pageNumber] = false
+        }else{
+            bookmarkedData?[self.chapterNumber][self.pageNumber] = true
+        }
+        UserDefaults.standard.set(bookmarkedData, forKey: self.bookmarkedKeyName)
+        self.setBookmarkedColor()
     }
     
 }
