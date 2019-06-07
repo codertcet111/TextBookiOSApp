@@ -57,16 +57,11 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sideMenuTableViewCell") as! sideMenuTableViewCell
-        cell.sideMenuChapterNameLabel.text = AppDataSource.appDataSource.ChaptersTitles[indexPath.row]
+        cell.sideMenuChapterNameLabel.text = "\(indexPath.row + 1). \(AppDataSource.appDataSource.ChaptersTitles[indexPath.row])"
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let vc = storyboard!.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-//        vc.chapterNumber = indexPath.row
-//        vc.pageNumber = 0
-//        let navigationController = UINavigationController(rootViewController: vc)
-//        self.present(navigationController, animated: true, completion: nil)
         if let topViewController : DetailViewController = self.navigationController!.topViewController! as? DetailViewController{
             topViewController.chapterNumber = indexPath.row
             topViewController.pageNumber = 0

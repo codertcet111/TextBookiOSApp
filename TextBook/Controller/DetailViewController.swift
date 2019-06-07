@@ -60,6 +60,13 @@ class DetailViewController: BaseViewController {
         self.contentDescriptionLabel.text = AppDataSource.appDataSource.RawContext
         super.viewDidLoad()
         addSlideMenuButton()
+//        giveMarquePropertyToLabel()
+    }
+    
+    func giveMarquePropertyToLabel(){
+        UIView.animate(withDuration: 1.0, delay: 1, options: ([.curveLinear, .repeat]), animations: {() -> Void in
+            self.chapterTitleLabel.center = CGPoint(x: self.chapterTitleLabel.bounds.size.width, y: self.chapterTitleLabel.center.y)
+        }, completion:  { _ in })
     }
     
     func setPageContent(){
@@ -67,12 +74,12 @@ class DetailViewController: BaseViewController {
         self.setBookmarkedColor()
         self.imageView.sd_setShowActivityIndicatorView(true)
         self.imageView.sd_setIndicatorStyle(.gray)
-        self.imageView.sd_setImage(with: URL(string: AppDataSource.appDataSource.ChapterContentsImages[self.pageNumber]), placeholderImage: UIImage(named:"Entertanment.png"))
+        self.imageView.sd_setImage(with: URL(string: AppDataSource.appDataSource.ChapterContentsImages[self.pageNumber]), placeholderImage: UIImage(named:"Tree"))
+        self.chapterTitleLabel.text = "\(self.chapterNumber + 1).\(self.pageNumber + 1) \(AppDataSource.appDataSource.ChaptersTitles[self.chapterNumber])"
 //        self.giveFlashAnimation()
     }
     
     func setChapterContext(){
-        self.chapterTitleLabel.text = AppDataSource.appDataSource.ChaptersTitles[self.chapterNumber]
         self.setPageContent()
     }
     
@@ -92,16 +99,6 @@ class DetailViewController: BaseViewController {
                                                     style: .plain,
                                                     target: self,
                                                     action: #selector(shareButtonTapped))
-        
-//        let bookmarkBarButtonItem = UIButton(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
-//        bookmarkBarButtonItem.setBackgroundImage(UIImage(named: "bookmarkedImages.png")?.withRenderingMode(.alwaysOriginal), for: .normal)
-//        bookmarkBarButtonItem.addTarget(self, action: #selector(bookmarkedButtonTapped), for: .touchUpInside)
-//
-//        let shareBarButtonItem = UIButton(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
-//        shareBarButtonItem.setBackgroundImage(UIImage(named: "shareTheAppNow.png")?.withRenderingMode(.alwaysOriginal), for: .normal)
-//        shareBarButtonItem.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
-//
-//        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: bookmarkBarButtonItem), UIBarButtonItem(customView: shareBarButtonItem)]
         
         self.navigationItem.rightBarButtonItems = [bookmarkBarButtonItem, shareBarButtonItem]
         self.setBookmarkedColor()

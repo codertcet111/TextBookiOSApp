@@ -29,7 +29,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
-        cell.cellLabelOutlet.text = AppDataSource.appDataSource.ChaptersTitles[indexPath.row]
+        cell.cellLabelOutlet.text = "\(indexPath.row + 1). \(AppDataSource.appDataSource.ChaptersTitles[indexPath.row])"
         return cell
     }
     
