@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		518EFAC522AA5CD400452CB5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518EFAC422AA5CD400452CB5 /* BaseViewController.swift */; };
 		51C96CE622A9285F00C7A28B /* AppDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C96CE522A9285F00C7A28B /* AppDataSource.swift */; };
 		51C96CE822A92D4000C7A28B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C96CE722A92D4000C7A28B /* TableViewController.swift */; };
 		51C96CEA22A92D5100C7A28B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C96CE922A92D5100C7A28B /* TableViewCell.swift */; };
@@ -17,11 +18,15 @@
 		51D2019022A8E26200D1038C /* TextBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 51D2018E22A8E26200D1038C /* TextBook.xcdatamodeld */; };
 		51D2019222A8E27000D1038C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51D2019122A8E27000D1038C /* Assets.xcassets */; };
 		51D2019522A8E27000D1038C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51D2019322A8E27000D1038C /* LaunchScreen.storyboard */; };
+		51FBDA2522AA553500A810B5 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FBDA2422AA553500A810B5 /* SideMenuViewController.swift */; };
+		51FBDA2722AA56E400A810B5 /* sideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FBDA2622AA56E400A810B5 /* sideMenuTableViewCell.swift */; };
+		51FBDA2922AA576E00A810B5 /* sideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FBDA2822AA576E00A810B5 /* sideMenuTableViewController.swift */; };
 		719E8D35513DF1ED85D77118 /* Pods_TextBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FCBD9293605445490BF390 /* Pods_TextBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		13FCBD9293605445490BF390 /* Pods_TextBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TextBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		518EFAC422AA5CD400452CB5 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		51C96CE522A9285F00C7A28B /* AppDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataSource.swift; sourceTree = "<group>"; };
 		51C96CE722A92D4000C7A28B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		51C96CE922A92D5100C7A28B /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -34,6 +39,9 @@
 		51D2019122A8E27000D1038C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51D2019422A8E27000D1038C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		51D2019622A8E27000D1038C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51FBDA2422AA553500A810B5 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		51FBDA2622AA56E400A810B5 /* sideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sideMenuTableViewCell.swift; sourceTree = "<group>"; };
+		51FBDA2822AA576E00A810B5 /* sideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sideMenuTableViewController.swift; sourceTree = "<group>"; };
 		733BE9BD2E0DD18B6A6EF26D /* Pods-TextBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextBook.debug.xcconfig"; path = "Target Support Files/Pods-TextBook/Pods-TextBook.debug.xcconfig"; sourceTree = "<group>"; };
 		B291CC2F6312512A893401C7 /* Pods-TextBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextBook.release.xcconfig"; path = "Target Support Files/Pods-TextBook/Pods-TextBook.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -56,7 +64,6 @@
 				733BE9BD2E0DD18B6A6EF26D /* Pods-TextBook.debug.xcconfig */,
 				B291CC2F6312512A893401C7 /* Pods-TextBook.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -75,6 +82,8 @@
 				51D2018B22A8E26200D1038C /* Main.storyboard */,
 				51C96CE722A92D4000C7A28B /* TableViewController.swift */,
 				51C96CE922A92D5100C7A28B /* TableViewCell.swift */,
+				51FBDA2622AA56E400A810B5 /* sideMenuTableViewCell.swift */,
+				51FBDA2822AA576E00A810B5 /* sideMenuTableViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -83,6 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				51D2018922A8E26200D1038C /* MainViewController.swift */,
+				51FBDA2422AA553500A810B5 /* SideMenuViewController.swift */,
+				518EFAC422AA5CD400452CB5 /* BaseViewController.swift */,
 				51C96CEB22A92EF100C7A28B /* DetailViewController.swift */,
 			);
 			path = Controller;
@@ -251,9 +262,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51FBDA2522AA553500A810B5 /* SideMenuViewController.swift in Sources */,
 				51D2018A22A8E26200D1038C /* MainViewController.swift in Sources */,
+				518EFAC522AA5CD400452CB5 /* BaseViewController.swift in Sources */,
+				51FBDA2722AA56E400A810B5 /* sideMenuTableViewCell.swift in Sources */,
 				51D2019022A8E26200D1038C /* TextBook.xcdatamodeld in Sources */,
 				51C96CE622A9285F00C7A28B /* AppDataSource.swift in Sources */,
+				51FBDA2922AA576E00A810B5 /* sideMenuTableViewController.swift in Sources */,
 				51C96CEA22A92D5100C7A28B /* TableViewCell.swift in Sources */,
 				51C96CE822A92D4000C7A28B /* TableViewController.swift in Sources */,
 				51D2018822A8E26200D1038C /* AppDelegate.swift in Sources */,

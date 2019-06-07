@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-class DetailViewController: UIViewController {
+class DetailViewController: BaseViewController {
     
     var chapterNumber: Int = 0
     var pageNumber: Int = 0
@@ -17,6 +17,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var nextContentButton: UIButton!
     @IBAction func previousChapterAction(_ sender: Any) {
         if self.chapterNumber != 0{
+            self.pageNumber = 0
             self.chapterNumber -= 1
             self.setChapterContext()
         }
@@ -36,6 +37,7 @@ class DetailViewController: UIViewController {
     @IBAction func nextChapterAction(_ sender: Any) {
         if self.chapterNumber != AppDataSource.appDataSource.ChaptersTitles.count - 1{
             self.chapterNumber += 1
+            self.pageNumber = 0
             self.setChapterContext()
         }
     }
@@ -51,8 +53,10 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var contentDescriptionLabel: UILabel!
     
     override func viewDidLoad() {
+        self.setChapterContext()
         self.contentDescriptionLabel.text = AppDataSource.appDataSource.RawContext
         super.viewDidLoad()
+        addSlideMenuButton()
     }
     
     func setPageContent(){
@@ -60,7 +64,7 @@ class DetailViewController: UIViewController {
         self.imageView.sd_setShowActivityIndicatorView(true)
         self.imageView.sd_setIndicatorStyle(.gray)
         self.imageView.sd_setImage(with: URL(string: AppDataSource.appDataSource.ChapterContentsImages[self.pageNumber]), placeholderImage: UIImage(named:"Entertanment.png"))
-        self.giveFlashAnimation()
+//        self.giveFlashAnimation()
     }
     
     func setChapterContext(){
