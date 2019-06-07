@@ -25,6 +25,23 @@ class SideMenuViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    func hideSideMenu(){
+        btnMenu.tag = 0
+        btnMenu.isHidden = false
+        if (self.delegate != nil) {
+            delegate?.sideMenuItemSelectedAtIndex(-1)
+        }
+        
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            self.view.frame = CGRect(x: -UIScreen.main.bounds.size.width, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+            self.view.layoutIfNeeded()
+            self.view.backgroundColor = UIColor.clear
+        }, completion: { (finished) -> Void in
+            self.view.removeFromSuperview()
+            self.removeFromParent()
+        })
+    }
 
 }
 
@@ -45,10 +62,16 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = storyboard!.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        vc.chapterNumber = indexPath.row
-        vc.pageNumber = 0
-        let navigationController = UINavigationController(rootViewController: vc)
-        self.present(navigationController, animated: true, completion: nil)
+//        let vc = storyboard!.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+//        vc.chapterNumber = indexPath.row
+//        vc.pageNumber = 0
+//        let navigationController = UINavigationController(rootViewController: vc)
+//        self.present(navigationController, animated: true, completion: nil)
+        if let topViewController : DetailViewController = self.navigationController!.topViewController! as? DetailViewController{
+            topViewController.chapterNumber = indexPath.row
+            topViewController.pageNumber = 0
+            topViewController.setChapterContext()
+        }
+        self.hideSideMenu()
     }
 }
