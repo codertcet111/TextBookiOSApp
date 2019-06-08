@@ -6,6 +6,7 @@
 //  Copyright © 2019 Shubham Mishra. All rights reserved.
 //
 
+//This View Controller will be having the Index for each chapters
 import UIKit
 
 class MainViewController: UIViewController {
@@ -23,6 +24,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
         return 1
     }
     
+    //For Index we are using the number of chapters count from AppDataSource class
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return AppDataSource.appDataSource.ChaptersTitles.count
     }
@@ -33,6 +35,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
+    //Oening up the detail view
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard!.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         vc.chapterNumber = indexPath.row

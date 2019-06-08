@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-class DetailViewController: BaseViewController {
+class DetailViewController: UIViewController {
     
     let bookmarkedKeyName: String = "bookmarkedPages"
     var chapterNumber: Int = 0
@@ -20,7 +20,7 @@ class DetailViewController: BaseViewController {
         if self.chapterNumber != 0{
             self.pageNumber = 0
             self.chapterNumber -= 1
-            self.setChapterContext()
+            self.setPageContent()
         }
     }
     @IBAction func previousContentAction(_ sender: Any) {
@@ -39,7 +39,7 @@ class DetailViewController: BaseViewController {
         if self.chapterNumber != AppDataSource.appDataSource.ChaptersTitles.count - 1{
             self.chapterNumber += 1
             self.pageNumber = 0
-            self.setChapterContext()
+            self.setPageContent()
         }
     }
     @IBOutlet weak var nextChapterButton: UIButton!
@@ -56,10 +56,10 @@ class DetailViewController: BaseViewController {
     override func viewDidLoad() {
         self.initializeBookmarkData()
         self.setBookmarkedAndShareImage()
-        self.setChapterContext()
+        self.setPageContent()
         self.contentDescriptionLabel.text = AppDataSource.appDataSource.RawContext
         super.viewDidLoad()
-        addSlideMenuButton()
+        self.addSlideMenuButton()
 //        giveMarquePropertyToLabel()
     }
     
@@ -70,18 +70,16 @@ class DetailViewController: BaseViewController {
     }
     
     func setPageContent(){
-        //        self.imageView
         self.setBookmarkedColor()
         self.imageView.sd_setShowActivityIndicatorView(true)
         self.imageView.sd_setIndicatorStyle(.gray)
         self.imageView.sd_setImage(with: URL(string: AppDataSource.appDataSource.ChapterContentsImages[self.pageNumber]), placeholderImage: UIImage(named:"Tree"))
         self.chapterTitleLabel.text = "\(self.chapterNumber + 1).\(self.pageNumber + 1) \(AppDataSource.appDataSource.ChaptersTitles[self.chapterNumber])"
-//        self.giveFlashAnimation()
     }
-    
-    func setChapterContext(){
-        self.setPageContent()
-    }
+//    
+//    func setChapterContext(){
+//        self.setPageContent()
+//    }
     
     func initializeBookmarkData(){
         if UserDefaults.standard.array(forKey: self.bookmarkedKeyName) as? [[Bool]] == nil{
@@ -112,6 +110,76 @@ class DetailViewController: BaseViewController {
         }else{
             self.navigationItem.rightBarButtonItem?.image = self.navigationItem.rightBarButtonItem?.image?.withRenderingMode(.alwaysOriginal)
         }
+    }
+    
+    func addSlideMenuButton(){
+        let btnShowMenu = UIButton(type: UIButton.ButtonType.system)
+        btnShowMenu.setImage(self.defaultMenuImage(), for: UIControl.State())
+        btnShowMenu.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        btnShowMenu.addTarget(self, action: #selector(self.onSlideMenuButtonPressed(_:)), for: UIControl.Event.touchUpInside)
+        let customBarItem = UIBarButtonItem(customView: btnShowMenu)
+        self.navigationItem.leftBarButtonItem = customBarItem;
+    }
+    
+    func defaultMenuImage() -> UIImage {
+        var defaultMenuImage = UIImage()
+        
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 30, height: 22), false, 0.0)
+        
+        UIColor.black.setFill()
+        UIBezierPath(rect: CGRect(x: 0, y: 3, width: 30, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 10, width: 30, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 17, width: 30, height: 1)).fill()
+        
+        UIColor.white.setFill()
+        UIBezierPath(rect: CGRect(x: 0, y: 4, width: 30, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 11,  width: 30, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 18, width: 30, height: 1)).fill()
+        
+        defaultMenuImage = UIGraphicsGetImageFromCurrentImageContext()!
+        
+        UIGraphicsEndImageContext()
+        
+        return defaultMenuImage;
+    }
+    
+    @objc func onSlideMenuButtonPressed(_ sender : UIButton){
+        if (sender.tag == 10)
+        {
+            
+            sender.tag = 0
+            
+            let viewMenuBack : UIView = view.subviews.last!
+            
+            UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                var frameMenu : CGRect = viewMenuBack.frame
+                frameMenu.origin.x = -1 * UIScreen.main.bounds.size.width
+                viewMenuBack.frame = frameMenu
+                viewMenuBack.layoutIfNeeded()
+                viewMenuBack.backgroundColor = UIColor.clear
+            }, completion: { (finished) -> Void in
+                viewMenuBack.removeFromSuperview()
+            })
+            
+            return
+        }
+        
+        sender.isEnabled = false
+        sender.tag = 10
+        
+        let menuVC : SideMenuViewController = self.storyboard!.instantiateViewController(withIdentifier: "SideMenuViewController") as!SideMenuViewController
+        menuVC.btnMenu = sender
+        self.view.addSubview(menuVC.view)
+        self.addChild(menuVC)
+        menuVC.view.layoutIfNeeded()
+        
+        
+        menuVC.view.frame=CGRect(x: 0 - UIScreen.main.bounds.size.width, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
+        
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            menuVC.view.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
+            sender.isEnabled = true
+        }, completion:nil)
     }
     
     @objc fileprivate func bookmarkedButtonTapped() {

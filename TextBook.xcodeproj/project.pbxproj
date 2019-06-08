@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		518EFAC522AA5CD400452CB5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518EFAC422AA5CD400452CB5 /* BaseViewController.swift */; };
 		51C96CE622A9285F00C7A28B /* AppDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C96CE522A9285F00C7A28B /* AppDataSource.swift */; };
 		51C96CE822A92D4000C7A28B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C96CE722A92D4000C7A28B /* TableViewController.swift */; };
 		51C96CEA22A92D5100C7A28B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C96CE922A92D5100C7A28B /* TableViewCell.swift */; };
@@ -26,7 +25,6 @@
 
 /* Begin PBXFileReference section */
 		13FCBD9293605445490BF390 /* Pods_TextBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TextBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		518EFAC422AA5CD400452CB5 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		51C96CE522A9285F00C7A28B /* AppDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataSource.swift; sourceTree = "<group>"; };
 		51C96CE722A92D4000C7A28B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		51C96CE922A92D5100C7A28B /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -93,7 +91,6 @@
 			children = (
 				51D2018922A8E26200D1038C /* MainViewController.swift */,
 				51FBDA2422AA553500A810B5 /* SideMenuViewController.swift */,
-				518EFAC422AA5CD400452CB5 /* BaseViewController.swift */,
 				51C96CEB22A92EF100C7A28B /* DetailViewController.swift */,
 			);
 			path = Controller;
@@ -264,7 +261,6 @@
 			files = (
 				51FBDA2522AA553500A810B5 /* SideMenuViewController.swift in Sources */,
 				51D2018A22A8E26200D1038C /* MainViewController.swift in Sources */,
-				518EFAC522AA5CD400452CB5 /* BaseViewController.swift in Sources */,
 				51FBDA2722AA56E400A810B5 /* sideMenuTableViewCell.swift in Sources */,
 				51D2019022A8E26200D1038C /* TextBook.xcdatamodeld in Sources */,
 				51C96CE622A9285F00C7A28B /* AppDataSource.swift in Sources */,

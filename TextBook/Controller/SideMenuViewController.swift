@@ -6,11 +6,9 @@
 //  Copyright © 2019 Shubham Mishra. All rights reserved.
 //
 
-import UIKit
-protocol sideMenuDelegate{
-    func sideMenuItemSelectedAtIndex(_ index : Int32)
-}
 
+//This will be my side menu view
+import UIKit
 
 class SideMenuViewController: UIViewController {
     
@@ -18,20 +16,15 @@ class SideMenuViewController: UIViewController {
     @IBOutlet weak var innerViewOutlet: UIView!
     
     @IBOutlet weak var sideMenuTableViewController: UITableView!
-    var delegate: sideMenuDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
+    
     
     func hideSideMenu(){
         btnMenu.tag = 0
         btnMenu.isHidden = false
-        if (self.delegate != nil) {
-            delegate?.sideMenuItemSelectedAtIndex(-1)
-        }
         
         UIView.animate(withDuration: 0.3, animations: { () -> Void in
             self.view.frame = CGRect(x: -UIScreen.main.bounds.size.width, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
@@ -65,7 +58,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource{
         if let topViewController : DetailViewController = self.navigationController!.topViewController! as? DetailViewController{
             topViewController.chapterNumber = indexPath.row
             topViewController.pageNumber = 0
-            topViewController.setChapterContext()
+            topViewController.setPageContent()
         }
         self.hideSideMenu()
     }
