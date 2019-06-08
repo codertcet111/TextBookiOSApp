@@ -96,7 +96,7 @@ class DetailViewController: UIViewController {
         let shareBarButtonItem = UIBarButtonItem(image: UIImage(named: "ShareOurAppNow.png")?.withRenderingMode(.alwaysOriginal),
                                                     style: .plain,
                                                     target: self,
-                                                    action: #selector(shareButtonTapped))
+                                                    action: #selector(self.shareButtonTapped(_:)))
         
         self.navigationItem.rightBarButtonItems = [bookmarkBarButtonItem, shareBarButtonItem]
         self.setBookmarkedColor()
@@ -182,7 +182,7 @@ class DetailViewController: UIViewController {
         }, completion:nil)
     }
     
-    @objc fileprivate func bookmarkedButtonTapped() {
+    @objc func bookmarkedButtonTapped() {
         var bookmarkedData = UserDefaults.standard.array(forKey: self.bookmarkedKeyName) as? [[Bool]]
         if bookmarkedData?[self.chapterNumber][self.pageNumber] == true{
            bookmarkedData?[self.chapterNumber][self.pageNumber] = false
@@ -193,17 +193,20 @@ class DetailViewController: UIViewController {
         self.setBookmarkedColor()
     }
     
-    @objc fileprivate func shareButtonTapped(){
+    @objc func shareButtonTapped(_ sender: UIButton){
+        
         //Set the default sharing message.
         let message = "Download our App."
         //AppStore link for our app
-        if let link = NSURL(string: "http://appstore.com")
+        let link = NSURL(string: "http://appstore.com")
+        let objectsToShare = [message, link!] as [Any]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
+        if UIDevice.current.userInterfaceIdiom == .pad
         {
-            let objectsToShare = [message,link] as [Any]
-            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-            activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
-            self.present(activityVC, animated: true, completion: nil)
+            activityVC.popoverPresentationController?.sourceView = self.view
         }
+        self.present(activityVC, animated: true, completion: nil)
     }
     
 }
